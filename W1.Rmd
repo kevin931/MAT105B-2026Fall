@@ -1,0 +1,309 @@
+---
+title: "Week 1"
+output: pdf_document
+date: "2026-08-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction to R
+
+## Hello World
+
+These are the most basic R operations:
+
+```{r}
+
+```
+
+We can also assign values to variables:
+
+```{r}
+
+```
+
+## Collections
+
+What if we have many values that we need to store? We can use `vector`, `list`, or `data.frame`. To start, let's generate a sequence of numbers in a **vector form**:
+
+To generate our own, we can use the following syntax:
+
+```{r}
+
+```
+
+A list can store many vectors or other types of data:
+
+```{r}
+
+```
+
+
+## Functions and Help
+
+In R, we can call functions to perform tasks (so that we don't have to write everything from scratch)! For example, we can find the sum (i.e. add things together):
+
+```{r}
+
+```
+
+Notice that `c()` is also a function!
+
+To get help, we can use the following syntax:
+
+```{r}
+
+```
+
+## Packages
+
+Let's not reinvent the wheels if we don't have to! That's what packages are for: we can use what others have created. One package we will be using is `tidyverse`, which is very helpful for data analyses.
+
+Let's first install the package:
+
+```{r, eval=FALSE}
+
+```
+
+Then, let's load the package:
+
+```{r}
+
+```
+
+
+## Reading Datasets
+
+In the class, we will mainly be using CSV (comma-separated values) files, which are widely compatible with R.
+
+Let's read in a dataset we'll be using today:
+
+```{r}
+
+```
+
+## Tidy Data Format
+
+Let's inspect the data again:
+
+```{r}
+
+```
+
+- Each row is an observation (i.e. county)
+- Each column is a variable
+
+# Types of Data
+
+## Categorical Data
+
+```{r}
+
+```
+
+Also note *nominal* vs *ordinal* data as introduced in OIS.
+
+## Numerical Data
+
+### Continuous Data
+
+```{r}
+
+```
+
+### Discrete Data
+
+```{r}
+
+```
+
+# Population vs Sample
+
+**Population**:
+
+**Sample**:
+
+**Census**:
+
+## Data Example: US County Data
+
+```{r}
+df <- usdata::county
+head(df)
+```
+
+**Questions**:
+
+- If we want to study the poverty rate across all US counties, what's the population of interest?
+
+- How do we take a sample?
+
+## Detour: Some more R basics
+
+### The Pipe Operator
+
+The pipe operator from Tidyverse takes something and pass it as the first argument to a function!
+
+```{r}
+
+```
+
+This is particularly useful for dataframes.
+
+### The Sample Function in R
+
+We can take a simple random sample:
+
+```{r}
+
+```
+
+## Data Example:
+
+- How do we take a sample?
+
+First, let's do so in Tidyverse:
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+Now, let's do it in base R:
+
+```{r}
+
+```
+
+Each has its advantages and quirks.
+
+# Parameters vs Statistics
+
+**Parameters**:
+
+**Statistics**:
+
+## Data Example
+
+**Question**: We are interested in the county with the highest poverty rate in the US and the corresponding poverty rate. What are our parameters?
+
+```{r}
+
+```
+
+**Question**: What happens when we take a sample? What are our statistics?
+
+```{r}
+
+```
+
+**Question**: Is our statistic close to the parameter?
+
+# Inference, Biases, and Representativeness
+
+We want our statistics to reasonably reflect the parameters of interest for valid **inference**:
+
+Ideally, we want our samples to be representative about the populations of interest.
+
+- **Can we always trust our statistics?**
+
+- **What sources of biases or error do we have?**
+
+# Sampling Methods
+
+## Simple Random Sample (SRS)
+
+**Definition**:
+
+Our previous example on sampling counties is indeed an SRS!
+
+To implement SRS in R, we use the `sample` function:
+
+```{r}
+
+```
+
+This is done without replacement!
+
+## Stratified Sample
+
+**Definition**:
+
+To do it in R:
+
+```{r}
+
+```
+
+Let's verify if it worked:
+
+```{r}
+
+```
+
+## Cluster Sample
+
+**Definition**: We select some of groups from the population.
+
+Example: Let's sample five states from the `county` dataset and examine all counties.
+
+```{r}
+
+```
+
+## Systematic Sample
+
+**Definition**:
+
+This is somewhat complicated to do. We won't do it in R now.
+
+## Convenience Sample
+
+**Definition**:
+
+**Examples**:
+
+- 
+
+- 
+
+# Bonus Contents:
+
+## Loops
+
+Sometimes, we need to perform an operation to every member of a collection.
+
+```{r}
+
+```
+
+Of course, we can do it directly:
+
+```{r}
+
+```
+
+## Indexing Datasets
+
+Sometimes we want to look at some specific rows or columns of a data frame. We can use the `[]` notation to do that. To get the first 10 rows and the first 2 columns:
+
+```{r}
+
+```
+
+We can also index columns by name. Notice that we use vectors to index multiple things:
+
+```{r}
+
+```
+
+We can also specify conditions (filtering):
+
+```{r}
+
+```
