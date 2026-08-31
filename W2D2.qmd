@@ -1,0 +1,220 @@
+---
+title: "W2D2"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+set.seed(105)
+```
+
+# Measuing the Spread of Data
+
+We've talked about the mean and median as characteristics of distributions and data we observe. However, the following data have the same mean and median but with different variances:
+
+```{r}
+df <- data.frame(x1 = rnorm(1000),
+                 x2 = rnorm(1000, sd=2))
+
+
+```
+
+So, we need to measure how spread out the data are!
+
+# Variance and Standard Deviation
+
+## Variance
+
+Population variance is defined as the following
+
+$$\sigma^2 = \frac{\sum_{i=1}^n (x_i-\mu)^2}{n}$$
+
+However, do we know $\mu$? We typically don't. Instead, we compute the sample variance:
+
+$$s^2 = \frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}$$
+
+**Question**: When $n$ is large, does $n-1$ vs $n$ matter?
+
+## Standard Deviation
+
+Standard deviation is simply the square root of the variance formulations:
+
+$$\sigma = \sqrt{\sigma^2} = \sqrt{\frac{\sum_{i=1}^n (x_i-\mu)^2}{n}}$$
+
+and
+
+$$s = \sqrt{s^2} = \sqrt{\frac{\sum_{i=1}^n (x_i-\bar x)^2}{n-1}}$$
+
+## Boxplots of Different Variance
+
+Now, let's plot the boxplots side by side:
+
+```{r}
+
+```
+
+**What do you notice about these plots?**
+
+
+
+## Let's do it in R!!
+
+We can compute the sample variance in R using the county data! Specifically, let's look at data from North Carolina, so that we don't need to deal with missing values.
+
+```{r}
+df <- usdata::county
+
+```
+
+```{r}
+
+```
+
+And standard deviation is the following:
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+Now, we've verified that they are the same!
+
+**When is variance useful in analyzing real data?**
+
+Suppose we want to find out how spread out populations are across the years.
+
+```{r}
+
+```
+
+### Real Example
+
+Let's create a boxplot of 2007 Population from the county data:
+
+```{r}
+
+```
+
+# Outliers
+
+As observed in the data above, some values can be "relatively extreme", if we compare them to the rest. They are called **outliers**. We need a more rigorous definition. An observation is considered an outlier if it is outside the interval
+
+$$(Q_1-1.5\times IQR,\, Q_3 + 1.5\times IQR)$$
+
+Let's do it in R!
+
+```{r, eval = FALSE}
+df %>%
+  filter(pop2017 > fivenum(pop2017)[4]+1.5*IQR(pop2017) |
+         pop2017 < fivenum(pop2017)[2]-1.5*IQR(pop2017))
+```
+
+Similarly, you can use the bracket notations from base R to perform the subset!
+
+\newpage
+
+# Understanding One Categorical Variable
+
+When we have only one categorical variable, we are interested in the counts: namely how many observations are associated with each value. Let's look at `county` dataset with a focus on NC again.
+
+Notice that there is a column called `metro`:
+
+```{r}
+
+```
+
+**Question**: How many counties in the US contain a metropolitan area?
+
+```{r}
+
+```
+
+We can of course do in base R:
+
+```{r}
+
+```
+
+**Question**: What percentage of the counties contains a metro area?
+
+```{r}
+
+```
+
+## More Than 2 Categories
+
+Let's look at the median education for the county!
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+# Two Categorical Variables
+
+For two categorical variables, we look at contingency tables!
+
+## Simple 2 by 2 Case
+
+Using the example from textbook, let's first create a variable that quantifies whether a state
+
+```{r}
+
+```
+
+**Question**: Is there a relationship between population gain and metro area status?
+
+```{r}
+
+```
+
+**Questions**:
+
+1.  How many metro counties gained population?
+2.  What percentage of counties that lost population does not contain a metro area?
+3.  How many counties lost population?
+
+## Larger Contingency Tables
+
+We can also generalize this to more than 2 by 2:
+
+```{r}
+
+```
+
+The interpretations are the same!
+
+# Visualizing A Categorical Variable
+
+For categorical variables, we usually use bar charts!
+
+## Metro
+
+First, let's plot the bar chart:
+
+```{r}
+
+```
+
+But this plot lacks precise information on counts, unlike 
+
+```{r}
+
+```
+
+## Median Education Level
+
+Now, let's plot the median education, but here is a twist: we need percentages.
+
+
+```{r}
+
+```

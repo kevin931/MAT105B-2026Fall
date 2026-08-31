@@ -1,0 +1,284 @@
+---
+title: "W2D1"
+format: typst
+---
+
+```{r setup, include=FALSE, message= F, warning=F}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Mean
+
+Mean is also known as the average.
+
+- **Population mean** is denoted as $\mu$
+- **Sample mean** is denoted as $\bar x$
+
+We define the sample mean as the following:
+
+$$\begin{aligned}
+\bar x &= \frac{x_1+x_2 + \cdots+x_n}{n} \\
+&= \frac{1}{n}\sum_{i=1}^{n} x_i\,. 
+\end{aligned}$$
+
+Let's write the definitions writing on the board.
+
+Let's do some examples in R!
+
+```{r}
+
+```
+
+More usefully, we often want to investigate results from a dataset (2017 population from county data):
+
+```{r}
+
+```
+
+Let's try again!
+
+```{r}
+
+```
+
+Let's make it more interesting: Find the average county population by state!!
+
+```{r}
+
+```
+
+# Median
+
+Median can be thought of as the middle number: 50% of data above.
+
+## Two Cases of the Medians
+
+1.  Odd number of observations
+
+We use the middle number.
+
+```{r}
+
+```
+
+2.  Even number of observations
+
+We average the middle two numbers.
+
+```{r}
+
+```
+
+- **Why is median desirable?**
+
+It is unaffected by extreme values. Examples:
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+## County Data Example
+
+```{r}
+
+```
+
+# Histogram
+
+Histogram showcases the shape of one variable.
+
+For example, let's plot a histogram of poverty rates of US counties:
+
+```{r}
+
+```
+
+But this is not as informative as it can be:
+
+```{r}
+
+```
+
+**Question**: Are the observed data symmetric around its median?
+
+```{r}
+
+```
+
+The answer is no!
+
+## Skewness
+
+### Symmetric data
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+### Left Skewed
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+### Right Skewed
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+## Property of a Symmetric Distribution
+
+**Mean and the median are the SAME!!**
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+**What happens when are not symmetric?**
+
+Let's go back to the county data with an extreme example:
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+**Why is that?**
+
+## Histogram Bin Widths
+
+### Too Few
+
+```{r}
+
+```
+
+### Too Many
+
+```{r}
+
+```
+
+**Be careful about which you choose! Especially not too few!**
+
+# Scatter Plots
+
+What happens when we want to examine the relationship between 2 variables?
+
+We use **scatter plots**.
+
+Example in R:
+
+```{r}
+
+```
+
+Let's make it better:
+
+```{r}
+
+```
+
+**How do we interpret the relationship?**
+
+# 5 Number Summary in R
+
+**Idea**: Let's look beyond the center of the data!
+
+- How about the minimum and the maximum?
+- How about 25% and 75% of the data?
+
+We can easily get more information in R by using the `summary` function on numeric data:
+
+```{r}
+
+```
+
+Let's unpack:
+
+- *Min.*: Minimum, the smallest number
+- *1st Qu*: 1st Quartile, 25% of the data
+- *Median*: Median, 50% of the data
+- *3rd Qu*: 3rd quartile, 75% of the data
+- *Max.*: Maximum, the largest
+- *NA's*: All missing values
+
+**Caveate**: This doesn't work well with tidyverse!
+
+## Interquartile Range (IQR)
+
+We define IQR as
+
+$$IQR = Q_3-Q_1\,.$$
+
+In R, we can do
+
+```{r}
+
+```
+
+## Problem
+
+Statisticians can't agree on the exact definition of $Q_1$ and $Q_3$.
+
+# Boxplots
+
+Boxplots perfectly encapsulates the five number summary. First, let's create a simple boxplot:
+
+```{r}
+x <- data.frame(x = c(1, 2, 2, 4, 7, 10, 15, 17, 20, 21))
+
+```
+
+Let's create the boxplot:
+
+```{r}
+
+```
+
+## Boxplots of Skewed Data
+
+Left Skewed:
+
+```{r}
+
+```
+
+Right skewed:
+
+```{r}
+
+```
