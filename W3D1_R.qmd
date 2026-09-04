@@ -1,0 +1,110 @@
+---
+title: "W3D1: R Portion"
+format: typst
+---
+
+# Loading an External Dataset
+
+It's important for us to load external datasets because not all datasets are built into R.
+
+```{r}
+
+```
+
+Now that we have the dataset loaded, let's do some preprocessing:
+
+```{r}
+df <- df %>% 
+  mutate(metro = factor(metro, levels = c("no", "yes")),
+         median_edu = factor(median_edu, levels = c("below_hs", "hs_diploma", "some_college", "bachelors")),
+         smoking_ban = factor(smoking_ban, levels = c("none", "partial", "complete")))
+```
+
+In our class, we will be using `csv` files, which are called `comma separate values`. (Note: these files can be opened with MS Excel as well.)
+
+# Two Categorical Variables
+
+For two categorical variables, we look at contingency tables!
+
+## Simple 2 by 2 Case
+
+Using the example from textbook, let's first create a variable that quantifies whether a state
+
+```{r}
+
+```
+
+**Question**: Is there a relationship between population gain and metro area status?
+
+```{r}
+
+```
+
+**Questions**:
+
+1.  How many metro counties gained population?
+2.  What percentage of counties that lost population does not contain a metro area?
+3.  How many counties lost population?
+
+## Larger Contingency Tables
+
+We can also generalize this to more than 2 by 2:
+
+```{r}
+
+```
+
+The interpretations are the same!
+
+## Visualizing Two Categorical Variables
+
+We can plot a side-by-side bar chart:
+
+```{r}
+
+```
+
+Or a proportion (filled) bar chart:
+
+```{r}
+
+```
+
+Which one you use depends on the message you want to convey.
+
+**Food for thought**: What information does the filled bar chart not convey?
+
+# Visualizing Continuous Variable by Group
+
+It is often the case that we want to investigate a continuous variable by a categorical variable: for example, whether the poverty rate is higher for counties with population gain! To do this, we can visualize the
+
+```{r}
+
+```
+
+**Questions**: 1. What can we conclude from the plot? 2. Are there outliers in this case? 3. Which group has a larger IQR?
+
+### Side by Side Boxplots with More Categories
+
+```{r}
+
+```
+
+# Bad Data Visualization
+
+Looking at the previous plot:
+
+1.  Should we remove the `below_hs` column from the plot?
+2.  If we have missing values, should we include them in the plot?
+
+You can try the following code at home:
+
+```{r}
+
+  
+```
+
+and see whether we have missing values.
+
+Examples of other bad data visualizations:
+
