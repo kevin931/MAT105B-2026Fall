@@ -1,0 +1,124 @@
+---
+title: "Problem Set 2: R"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This part of the problem set involves the usage of R and the submission of R codes. Please fill in your R codes and answers in the indicated code chunks/areas. When finished, please knit the document to PDF and submit the PDF file to Moodle.
+
+In the case that your document does not knit to PDF, this is the time to debug and ask me questions before the review. You may try the following:
+
+1.  Clear your local environment
+2.  Re-run all your cells in order and pay attention to whether you've defined variables after you called them.
+
+Before we begin, we will need to load the necessary packages:
+
+```{r, message=FALSE}
+library(tidyverse)
+```
+
+\newpage
+
+# Measure of Dispersion: Mean Absolute Deviation
+
+When we talk about the **dispersion** of a data set we are concerned with how spread out it is. Both standard deviation and IQR are measurements of dispersion. However, they are not the only measurements of dispersion.
+
+One alternative statistic we can use is the **mean absolute deviation**. We can start from
+
+$$\bar X - X_i\,,$$
+
+which is the deviation. Then the absolute deviation is
+
+$$|\bar x - x_i|$$
+
+which takes the absolute value of $\bar x - x_i$. The **mean absolute deviation** is defined by taking the mean, which is
+
+$$\frac{\sum_{i=1}^n |\bar x -x_i|}{n}\,.$$
+
+Suppose we have the following data set:
+
+```{r}
+x <- c(2, 0, 6, 28, 19, 6)
+```
+
+## Question 1
+
+Write code to find the mean of `x` and save it in a variable called `mean_x`.
+
+```{r}
+## Your code goes here
+
+```
+
+## Question 2
+
+Find the vector $\bar x - \boldsymbol x$. (Note $\bar x$ is a scalar number and $\boldsymbol x$ is a vector. In R, you can subtract a scalar from a vector directly. Try `x-1` and see what happens).
+
+```{r}
+## Your code goes here
+
+```
+
+## Question 3
+
+Use your codes from the previous question and find the absolute value to obtain $|\bar x - \boldsymbol x|$. In R, you can find the absolute value using the `abs()` function.
+
+```{r}
+## Your code goes here
+
+```
+
+## Question 4
+
+Use your codes from the previous question and find
+
+$$\frac{\sum_{i=1}^n |\bar x -x_i|}{n}\,.$$
+
+Note that the form of $\frac{\sum_i y_i}{n}$ is simply the arithematic mean. So, you may consider using the `mean()` function.
+
+```{r}
+## Your code goes here
+
+
+```
+
+# Real Data Application
+
+## Question 5
+
+Load the dataset named `food_access.csv` in the data folder on Jupyter Hub. Make sure you use the link on Moodle so that this notebook and the data are in the correct place. Use the function `read_csv`, not `file.choose()` or `read.csv()`.
+
+Hint: The file path should be `"./data/food_access.csv"`
+
+```{r}
+## Your code goes here
+
+```
+
+## Question 6
+
+Filter the data using the `State` variable to include only observations from North Carolina. Name the output dataset `Food` again.
+
+```{r}
+## Your code goes here
+
+```
+
+## Question 7
+
+Use your codes from **Question 4** to the find the mean absolute deviation for the `NUMGQTRS` variable. (Note: To extract a column as a vector, use the `df$column` syntax.)
+
+```{r}
+## Your code goes here
+
+
+```
+
+## Question 8
+
+Use the data dictionary for the dataset (named `food_access_dictionary.csv` on Moodle) to determine the meaning of the `NUMGQTRS` variable.
+
+**Your answer**:
