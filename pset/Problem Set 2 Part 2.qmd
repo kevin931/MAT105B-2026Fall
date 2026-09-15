@@ -91,7 +91,7 @@ Note that the form of $\frac{\sum_i y_i}{n}$ is simply the arithematic mean. So,
 
 Load the dataset named `food_access.csv` in the data folder on Jupyter Hub. Make sure you use the link on Moodle so that this notebook and the data are in the correct place. Use the function `read_csv`, not `file.choose()` or `read.csv()`.
 
-Hint: The file path should be `"./data/food_access.csv"`
+Hint: The file path should be `"../data/food_access.csv"`
 
 ```{r}
 ## Your code goes here
