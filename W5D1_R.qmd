@@ -1,0 +1,37 @@
+---
+title: "W5D1 R Portion"
+format: typst
+---
+
+In R, we have the following functions:
+
+- `rbinom`: Sample random numbers from the specified binomial distribution
+- `dbinom`: Find the PMF for at a given $x$
+- `pbinom`: Find the CDF $F(x)$ at a given $x$
+- `qbinom`: Find $F^{-1}(x)$, where an input of cumulative probability returns $x$
+
+Before we begin, let's set up the environment.
+
+```{r}
+set.seed(105)
+```
+
+# Sampling from the Binomial Distribution
+
+```{r}
+
+```
+
+# Find the PMF
+
+Let's use the $BIN(3, 0.5)$ again:
+
+```{r}
+
+```
+
+# Find the CDF
+
+```{r}
+
+```
