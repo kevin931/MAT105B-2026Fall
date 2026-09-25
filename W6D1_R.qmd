@@ -1,0 +1,263 @@
+---
+title: "W6D1"
+format: typst
+---
+
+```{r}
+set.seed(105)
+```
+
+# Uniform Distribution
+
+In R, we have the following functions to sample from a uniform distribution:
+
+- `runif`: Sample random numbers from the specified uniform distribution
+- `dunif`: Find the density for at a given $x$
+- `punif`: Find the CDF $F(x)$ at a given $x$
+- `qunif`: Find $F^{-1}(x)$, where an input of cumulative probability returns $x$
+
+## Sampling from the Uniform Distribution
+
+```{r}
+
+```
+
+Let's check that the data are actually uniform:
+
+```{r}
+
+```
+
+## Find the Density
+
+```{r}
+
+```
+
+## Find the CDF
+
+```{r}
+
+```
+
+## Find the Inverse CDF (Quantile)
+
+```{r}
+
+```
+
+# Plot Densities/PMF in R
+
+## Plot Binomial PMF
+
+Suppose $X\sim BIN(30, 0.2)$. We can first find the PMF in R:
+
+```{r}
+
+```
+
+Then, let's plot the PMF:
+
+```{r}
+
+```
+
+# Normal Distribution
+
+In R, we have the following functions to sample from and find quantities a normal distribution:
+
+- `rnorm`: Sample random numbers from the specified normal distribution
+- `dnorm`: Find the density for at a given $x$
+- `pnorm`: Find the CDF $F(x)$ at a given $x$
+- `qnorm`: Find $F^{-1}(x)$, where an input of cumulative probability returns $x$
+
+# Sampling from the Normal Distribution
+
+Let's sample from the standard normal distribution $N(0, 1)$:
+
+```{r}
+
+```
+
+Let's check that the data are actually normal using an empirical density plot:
+
+```{r}
+
+```
+
+# Find the Density
+
+This is not as useful as finding the probability for a PMF, but we can still do it:
+
+```{r}
+
+```
+
+Let's plot the actual normal density:
+
+```{r}
+
+```
+
+## Find the CDF
+
+For the standard normal distribution, let's verify the empirical rules in the lecture notes.
+
+Recall that we can write
+
+$$
+P(a \leq X\leq b) = F(b)-F(a)\,.
+$$
+
+For 1 standard deviation:
+
+```{r}
+
+```
+
+For 2 standard deviation:
+
+```{r}
+
+```
+
+For 3 standard deviation:
+
+```{r}
+
+```
+
+## Find the Inverse CDF (Quantile)
+
+Suppose you are interested in finding the $x$ value such that you are in the top 10% of of a standard normal distribution.
+
+```{r}
+
+```
+
+\newpage
+
+# Examples of a Normal Distribution
+
+Let $X$ denote the numbers of grams of hydrocarbons emitted by an automobile per mile. Assume that $X$ is normal with $\mu=1$ grams and $\sigma=0.25$.
+
+## Probability Calculation
+
+What is the probability that a randomly selected car emits between 0.9 and 1.54 grams?
+
+```{r}
+
+```
+
+What is the probability that a given car emits more than 0.7 grams?
+
+```{r}
+
+```
+
+## Z Scores
+
+Suppose a car is measured to emit 1.49 grams. How many standard deviation away is this observation from the mean?
+
+```{r}
+
+```
+
+## Quantile Calculation
+
+A manufacturer wants to design a new car with emission in the 10th percentile. What is the emission requirement needed to achieve that?
+
+```{r}
+
+```
+
+\newpage
+
+# Normal Approximation to the Binomial Distribution
+
+## Aside: For Loop
+
+We use a `for` loop to iterate over a range of values. You can read it "for each `i` in the vector, run the following code."
+
+```{r, eval=FALSE}
+for (i in 1:10) {
+  print(i)
+}
+```
+
+## Visualizations of Binomial Distribution
+
+First, let's visualize a series of binomial distributions, each with increasing $n$:
+
+```{r}
+par(mfrow = c(2, 3))
+
+for(n in c(5, 10, 20, 30, 50, 100)) {
+  plot(x = 0:n, y = dbinom(0:n, n, 0.2),
+       type = "h",
+       main = paste0("n = ", n),
+       ylab = "PMF",
+       xlim = c(0, n))
+}
+```
+
+Now, let's be fancy and add a normal curve on top of each:
+
+```{r}
+par(mfrow = c(2, 3))
+
+for(n in c(5, 10, 20, 30, 50, 100)) {
+  plot(x = 0:n, y = dbinom(0:n, n, 0.2),
+       type = "h", lwd=2,
+       main = paste0("n = ", n),
+       ylab = "PMF", xlab = "x",
+       xlim = c(0, n))
+  
+  lines(x = seq(0, n, 0.01), y = dnorm(seq(0, n, 0.01), 0.2*n, sqrt(0.2*0.8*n)),
+        col = "red", lwd = 2)
+}
+```
+
+When $n$ is large, we get a very good approximation!
+
+## Example
+
+Suppose you know that the city you live in rains 30% of the days during a given year. Assume that the weather is independent for each day, and randomly decided.
+
+Let $X$ be the number of days that rains, and we have
+
+$$
+X\sim BIN(365, 0.3)\,.
+$$
+
+### Mean and Variance
+
+Let's find the mean and variance for this case.
+
+```{r}
+
+```
+
+### Probability Calculations
+
+What is the probability that it rains more than 100 days a year?
+
+We want to find
+
+$$
+P(X=100)\,.
+$$
+
+Using binomial distributions:
+
+```{r}
+
+```
+
+Using Normal approximation:
+
+```{r}
+
+```
+
+**Question**: Are they close? Why are they not exactly the same?
