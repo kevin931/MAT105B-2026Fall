@@ -1,0 +1,156 @@
+---
+title: "W6D2_R"
+format: typst
+execute:
+    eval: true
+---
+
+# Sample Means
+
+```{r}
+set.seed(2026)
+```
+
+Let's examine sample means closer. We know that suppose
+
+$$
+X\sim U(0,1)
+$$
+
+the mean is $0.5$. Let's first take a sample and compute its sample mean:
+
+```{r}
+
+```
+
+## Law of Large Numbers
+
+From law of large numbers, we know that sample mean converges to population mean:
+
+$$
+\lim_{n\to \infty} \bar x = \mu
+$$
+
+Let's use a simple example: we can look at the error when we increase the sample size.
+
+```{r}
+abs(mean(runif(2)) - 0.5)
+abs(mean(runif(10)) - 0.5)
+abs(mean(runif(100)) - 0.5)
+abs(mean(runif(1000)) - 0.5)
+```
+
+Now, we can be a little fancy. Let's show that it works by repeated sampling and increasing sample size (yes, we are just being fancy and you don't need to reproduce this).
+
+```{r}
+# Set up parameters
+mu <- 0.5
+n <- c(1, 10, 100, 1000, 10000)
+
+# Sample 
+error <- list()
+counter <- 1
+for (i in n) {
+  error[[counter]] <- numeric(100)
+  for (j in 1:100) {
+    error[[counter]][j] <- mean(runif(i)) - mu
+  }
+  counter <- counter + 1 
+}
+
+par(mfrow = c(1, 5))
+for (i in 1:5) {
+  boxplot(error[[i]], ylim = c(-0.5, 0.5),
+          main = paste0("n=", n[i]),
+          ylab = "Error")
+}
+```
+
+We can show that two things happen:
+
+1.  The sample mean is unbiased
+2.  As the sample size increases, the variance of the sample mean decreases.
+
+# Visualizing the CLT for Means
+
+**Question**: What would you expect to happen when we repeatedly compute the mean from any distribution?
+
+Let's try it! Again, let's use
+
+$$
+X\sim U(0,1)
+$$
+
+which is certainly not normally distributed.
+
+For the following code, we need to run it in the console rather than in the note book:
+
+```{r}
+# x11()
+sample_mean <- numeric(100)
+
+for (i in 1:100) {
+  sample_mean[i] <- mean(runif(100))
+  # hist(sample_mean[1:i], xlim = c(0, 1),
+  #      main = "CLT for Uniform Mean")
+  # Sys.sleep(0.1)
+}
+```
+
+# The Central Limit Theorem
+
+The Central Limit Theorem (CLT) can be stated as
+
+$$
+\sqrt{n}\frac{\bar X-\mu}{\sigma} \to N(0,1)
+$$
+
+We can alternative express it as (with a bit abuse of notation on the idea of limiting distributions):
+
+$$
+\bar X \sim N\left(\mu, \frac{\sigma}{\sqrt{n}} \right)\,.
+$$
+
+We'll write down some properties and derivations on paper.
+
+## CLT for Uniform Means
+
+Let's check the mean and variances from the previous example to see whether these are correct. We know that
+
+$$
+X \sim U(0, 1)\,.
+$$
+
+and we have
+
+$$
+\begin{aligned}
+\mu &= 0.5\\
+\sigma &= \sqrt{\frac{1}{12}}
+\end{aligned}
+$$
+
+Let's check the actual mean and variance from the sampling distribution
+
+```{r}
+
+```
+
+Let's use R to find the probability $P(0.48\leq \bar X\leq 0.52)$:
+
+```{r}
+
+```
+
+which are very close to what we expect!
+
+## CLT for Skewed Distribution
+
+And in fact, this works for a skewed distribution as well!
+
+```{r}
+sample_mean_skewed <- rexp(100*100)
+sample_mean_skewed <- matrix(sample_mean_skewed, nrow = 100)
+sample_mean_skewed <- colMeans(sample_mean_skewed)
+hist(sample_mean_skewed, main = "Sample Means from Skewed Distribution")
+```
