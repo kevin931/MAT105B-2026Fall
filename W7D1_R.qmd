@@ -1,0 +1,91 @@
+---
+title: "W7D1_R"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Case Study: Food Access Dataset
+
+Recall the case study we did about food deserts using the Food Access Research Atlas. Previously, we visualized the tracts that are low income and low access and analyzed the proportions in the urban and rural setting.
+
+First, let's read the dataset:
+
+```{r}
+library(tidyverse)
+df <- read_csv("./data/food_access.csv")
+```
+
+Let's look at the `LILATracts_1And10` variable.
+
+```{r}
+
+```
+
+Notice that the `LILATracts_1And10` variable is binary, which can be conceived as a Bernoulli random variable for each census tract.
+
+For this time, let's focus on North Carolina again:
+
+```{r}
+
+```
+
+## Sampling from the Dataset
+
+Conducting a census is expensive and hardly practical when we do a research. Suppose we can sample only two hundred census tracts from NC.
+
+```{r}
+set.seed(105)
+
+```
+
+## Estimating the Proportion
+
+**Question**: Can you estimate the proportion of tracts in NC that are low income and low access? Let's call the estimated proportion $\hat p$.
+
+```{r}
+
+```
+
+**Question**: Use the central limit theorem to compute the variance for $\hat p$.
+
+We will do this on paper!
+
+**Question**: What is the probability that the proportion is between 0.1 and 0.2?
+
+```{r}
+
+```
+
+# Confidence Interval for One Proportion
+
+In R, we can use the `BinomCI` function from the `DescTools` package to obtain confidence intervals for a single proportion $\hat p$. Remember to set `method="wald"` to obtain a confidence interval from normal approximation rather than other methods.
+
+```{r}
+if (!require(DescTools)) {
+  install.packages("DescTools")
+  library(DescTools)
+}
+```
+
+## Food Access Example
+
+**Question**: Let's find a 95% confidence interval for $\hat p$ from above.
+
+```{r}
+
+```
+
+Let's verify it by doing the CI by hand (using formula)
+
+```{r}
+
+```
+
+or using the distribution from the CLT directly:
+
+```{r}
+
+```
