@@ -1,0 +1,42 @@
+---
+title: "W7D2"
+format: typst
+---
+
+# t Critical Values
+
+We can find the $t$ critical values in R.
+
+## Comparison of t vs Z Critical Values
+
+For example, for $n=20$ and confidence level of 95%, we can find
+
+```{r}
+
+```
+
+We can compare it to a $z$ critical value:
+
+```{r}
+
+```
+
+We can see that $t$ critical value is larger for the same confidence level.
+
+## Other t Critical Values
+
+Let's keep using $n=20$, and we can also find a confidence level of 90%:
+
+```{r}
+# 90% for n=20
+
+```
+
+For confidence level of 99%:
+
+```{r}
+# 99% for n=20
+
+```
+
+**Important**: Remember to use the appropriate sample size $n$ for the degrees of freedom.
