@@ -1,0 +1,88 @@
+---
+title: "Problem Set 4 Part 2"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This part of the problem set involves the usage of R and the submission of R codes. Please fill in your R codes and answers in the indicated code chunks/areas. When finished, please knit the document to PDF and submit the PDF file to Moodle.
+
+In the case that your document does not knit to PDF, you may try the following:
+
+1.  Clear your local environment
+2.  Re-run all your cells in order and pay attention to whether you've defined variables after you called them.
+3.  Knit to html and print as PDF.
+
+**You will not receive credit if the markdown fails to compile to PDF. For example:**
+
+- **No PDF file is submitted**
+
+- **PDF of a raw markdown file is submitted**
+
+- **PDF of screenshots is submitted**
+
+**If you rendered with the global** `eval=False` **option, you will receive a 2-point deduction.**
+
+Before we begin, we will need to load the necessary packages:
+
+```{r, message=FALSE}
+set.seed(105)
+```
+
+\newpage
+
+# Chi-Squared Distribution
+
+In statistics, the Normal distribution is very useful. In fact, other distributions often have a relationship with the Normal distribution. In this case, let's look at the Chi-Squared distribution with 1 degree of freedom, which can be denoted as
+
+$$
+X\sim \chi^2_1\,.
+$$ We have the relationship
+
+$$
+X = Z^2
+$$ where $Z\sim N(0,1)$.
+
+## Question 1
+
+Generate a random vector of length 100 from a standard normal distribution and call it `z`. (2pts)
+
+```{r}
+## Your code here
+
+```
+
+## Question 2
+
+Now, square `z` to obtain a chi-squared random variable, and call it `x`. Note: you can square something in R by using the `^2` notation. (2pts)
+
+```{r}
+## Your code here
+
+```
+
+## Question 3
+
+It turns out that we sample a chi-squared random variable in R directly using `rchisq` function. Use this to sample 100 realizations of $X$ directly and call it `x2` in R. Note that you need to specify `df=1` as an argument in `rchisq`.
+
+```{r}
+## Your code here
+
+```
+
+## Question 4
+
+Create a histogram for both `x` and `x2`. You can plot them separately if you would like. Make sure you title your plot so we know which comes from normal and which comes from Chi-Squared. (4pts)
+
+```{r}
+## Your code here
+
+```
+
+## Question 5
+
+Are the plots you produced in the previous question similar? (2pts)
+
+**Your Answer**:
