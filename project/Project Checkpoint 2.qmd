@@ -1,0 +1,64 @@
+---
+title: "Project Checkpoint 2"
+format: typst
+---
+
+By this point in your project, you will have started your data analysis. So, let's do this in R rather than on paper. This will be an opportunity for you to start some preliminary work on the dataset and do some exploratory data analysis. Feel free to use this checkpoint as your workspace and try things out.
+
+Later on, you will be spending time working on your project using a Quarto `qmd` file, which is in this format. So, it is a good time to start familiarize yourself with how to navigate the document. At any point, feel free to add more code cells to the document and modify this to suit your needs. For the next checkpoint, you will be creating your own Quarto document from scratch.
+
+Overall, here are the things I'm looking for in this checkpoint:
+
+1.  Loading data into R and exploring it.
+2.  Performing a preliminary analysis on the dataset. While the definition of this is loose, you can think about the following:
+
+- Exploring the dataset
+- Plotting variables
+- Summary statistics
+- Joining datasets
+
+Although some of these analyses will technically have met the requirements of the project, you will likely have to do much more in the coming weeks to refine your projects with new method we are going to learn. Don't just settle with simple analyses. In future checkpoints, you are expected to go more in depth with your analyses.
+
+If you need help with Quarto documents, refer to [this video.](https://moodle.davidson.edu/mod/url/view.php?id=748629)
+
+# Setup and Packages
+
+Before you begin, you may load the packages needed here:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(readxl)
+```
+
+You may add additional packages that you need here.
+
+------------------------------------------------------------------------
+
+# Dataset
+
+By this stage, you should have your data in a clean format that is ready for analysis. Below, add some code cells and descriptions to document your data exploring process. In this section, make sure include the following:
+
+- A preview of the dataset using the `head()` or the `glimpse()` function.
+- All codes used to load the dataset, join datasets, etc.
+- All outputs
+- Some paragraphs to document your process and comment on the ouputs.
+
+Feel free to include as many code blocks and discussions as you like.
+
+::: callout-tip
+For easier access to datasets, you may put the dataset(s) in the same folder as this document so that you can load the datasets easily. Use the `read_csv()` or `read.csv()` function.
+:::
+
+------------------------------------------------------------------------
+
+# Exploratory Data Analysis
+
+This is where you will produce some preliminary analyses in understanding your dataset. Please add your own code blocks, descriptions, and interpretatiosn below.
+
+------------------------------------------------------------------------
+
+# Getting Ready for Your Project
+
+There is more to do for the project than the visualization and analysis in this checkpoint. You will likely need more visualizations, refine and modify your analyses, put together a convincing and cohesive narrative, and start preparing for the presentation. Notice that presentation starts on the week after thanksgiving, so don't wait the last minute. We will be finalizing presentation slots soon, and you will be given rubrics for both the presentation and the written report.
+
+If at any point you have questions, please feel free to ask me! I'm more than happy to help!
