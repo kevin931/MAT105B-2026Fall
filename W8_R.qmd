@@ -1,0 +1,50 @@
+---
+title: "W8"
+format: typst
+---
+
+# Inference for One Proportion
+
+We use the function `prop.test` for a hypothesis test for one proportion. There are a few things to remember:
+
+1.  Set `correct=FALSE` to disable the continuity correction.
+2.  Specify `p`, which is the null proportion we are testing against.
+3.  The given confidence interval will be different from what we expect. So use `BinomCI` from the `DescTools` instead.
+4.  Change the following is needed:
+
+- `alternative`: For `two.sided`, `greater`, or `less`
+- `conf.level`: The confidence level, which is `1-\alpha`
+
+## Example
+
+Historically, 16% of all first-year students at a large college make the dean’s list. For your cohort, you randomly sampled 40 students and found that 10 students made the dean’s list. Is there evidence that the proportion of students who made the dean’s list in your cohort is different from historical data?
+
+```{r}
+
+```
+
+# Inference for One Mean
+
+We use `t.test` to conduct a hypothesis test for one mean. We need to specify:
+
+1.  `mu`: The null mean we are testing against.
+2.  Optionally we can specify:
+
+- `alternative`: For `two.sided`, `greater`, or `less`
+- `conf.level`: The confidence level, which is `1-\alpha`
+
+## Example
+
+Suppose you are interested in studying the average time people must wait to get food at a particular food truck during lunchtime. You randomly asked 15 people, and here are the times they waited:
+
+```{r}
+x <- c(5.3, 4.8, 4.9, 6.1, 5.9, 5.1, 4.3, 5.0, 4.6, 5.0, 5.3, 4.9, 4.6, 5.1, 5.2)
+```
+
+Conduct a test to determine whether people will have to wait more than 5 minutes at $\alpha=0.05$.
+
+```{r}
+
+```
+
+We should get the same values as we did previously.
