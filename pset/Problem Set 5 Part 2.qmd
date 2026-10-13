@@ -1,0 +1,80 @@
+---
+title: "Problem Set 5 Part 2"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This part of the problem set involves the usage of R and the submission of R codes. Please fill in your R codes and answers in the indicated code chunks/areas. When finished, please knit the document to PDF and submit the PDF file to Moodle.
+
+In the case that your document does not knit to PDF, this is the time to debug and ask me questions before the review. You may try the following:
+
+1.  Clear your local environment
+2.  Re-run all your cells in order and pay attention to whether you've defined variables after you called them.
+
+Before we begin, we will need to load the necessary packages:
+
+```{r, message=FALSE}
+library(DescTools)
+```
+
+\newpage
+
+# One Proportion Problem
+
+First we will generate some data `x`:
+
+```{r}
+set.seed(105)
+x <- rbinom(25, 1, 0.4)
+```
+
+(Note: 2pts each)
+
+## Question 1
+
+Use R to conduct a hypothesis test at $\alpha=0.05$ for `x` for whether $p$ is less than 0.5.
+
+```{r}
+## Your code here
+
+```
+
+## Question 2
+
+Based on your results in Question 1, write a conclusion for your test.
+
+**Your answer**:
+
+## Question 3:
+
+Was your decision correct? If not, what error did you make? (Hint: Look back at how `x` was generated in R).
+
+**Your answer**:
+
+## Question 4
+
+What is the confidence interval reported from Question 1?
+
+**Your answer**:
+
+## Question 5
+
+Now, use the `BinomCI` function to construct a Wald confidence interval. Be very careful here. Read the documentation of the `BinomCI` function to see which argument you need.
+
+```{r}
+
+```
+
+## Question 6
+
+Are the confidence intervals in Question 5 and 4 the same? If not, experiment with the `method` argument in `BinomCI` to determine which confidence interval method was used by the code you used in Question 1.
+
+```{r}
+## Your code here
+
+```
+
+**Your answer**:
