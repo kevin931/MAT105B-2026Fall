@@ -58,14 +58,6 @@ Or, we can directly run
 
 **Let's write a conclusion:**
 
-## What happens if we run a two sample t test?
-
-```{r}
-
-```
-
-**Question**: Why do we need to run paired t test instead of two sample t test?
-
 \newpage
 
 # Example: Housing Data Analysis
@@ -78,37 +70,12 @@ rent <- read_csv("./data/zillow_rent.csv")
 
 Let's look at the data!
 
-## Comparison of Rents between Two States
-
 Assume that rent prices are random samples that are independent. (Is this true?) Let's filter the dataset to include two states of interest:
 
 ```{r}
 rent <- rent %>%
-  filter(state %in% c("NC", "SC"))
+  filter(state %in% c("North Carolina", "South Carolina"))
 ```
-
-### Assumption Checking
-
-Now, let's check whether assumptions are met and whether it makes sense to run a two-sample t test:
-
-```{r}
-
-```
-
-Some questions:
-
-1.  Are the variances the same?
-2.  Is the normality condition met?
-
-### Run T Test
-
-```{r}
-
-```
-
-### Conclusion
-
-**Conclusion**:
 
 ## Comparison of Rent Between Two Months
 
@@ -124,22 +91,14 @@ And let's visualize it:
 
 ```
 
-### Conduct a Paired T Test
+**Question**: Are the assumptions met?
 
-Now, the test is straightforward:
+## Run Paired T Test
 
 ```{r}
 
 ```
 
-### Write a Conclusion
+## Conclusion
 
 **Conclusion**:
-
-### What if we use a wrong test?
-
-What happens when we use a two sample test instead?
-
-```{r}
-
-```
