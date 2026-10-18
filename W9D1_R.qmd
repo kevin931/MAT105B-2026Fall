@@ -1,0 +1,145 @@
+---
+title: "W9D1"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Paired T Test
+
+Today, we will performed paired T test in R. First, let's load the dataset from the class example in R.
+
+```{r}
+x1 <- c(209, 210, 205, 198, 216, 217, 238, 240, 222)
+x2 <- c(199, 207, 189, 209, 217, 202, 211, 223, 201)
+```
+
+First, let's create a data frame:
+
+```{r}
+df <- data.frame(x = c(x1, x2),
+                 time = c(rep("Before", 9), rep("After", 9)))
+```
+
+**Question**: Is this data in tidy format?
+
+## Assumption Checking
+
+First, let's check assumptions by plooting the difference:
+
+```{r}
+
+```
+
+**Our observations**: there are some outliers, and let's proceed with caution.
+
+What does it look like if we treat it as two samples?
+
+```{r}
+
+```
+
+## Perform T Test
+
+There are a few methods of doing this:
+
+```{r}
+
+```
+
+Or, we can directly run
+
+```{r}
+
+```
+
+**Let's write a conclusion:**
+
+## What happens if we run a two sample t test?
+
+```{r}
+
+```
+
+**Question**: Why do we need to run paired t test instead of two sample t test?
+
+\newpage
+
+# Example: Housing Data Analysis
+
+Now, let's turn our attention to real data! This is the Zillow dataset, which is available on Moodle.
+
+```{r}
+rent <- read_csv("./data/zillow_rent.csv")
+```
+
+Let's look at the data!
+
+## Comparison of Rents between Two States
+
+Assume that rent prices are random samples that are independent. (Is this true?) Let's filter the dataset to include two states of interest:
+
+```{r}
+rent <- rent %>%
+  filter(state %in% c("NC", "SC"))
+```
+
+### Assumption Checking
+
+Now, let's check whether assumptions are met and whether it makes sense to run a two-sample t test:
+
+```{r}
+
+```
+
+Some questions:
+
+1.  Are the variances the same?
+2.  Is the normality condition met?
+
+### Run T Test
+
+```{r}
+
+```
+
+### Conclusion
+
+**Conclusion**:
+
+## Comparison of Rent Between Two Months
+
+Now, let's compare whether **rent increased the beginning of 2025 to September**. First, let's create new variable for the rent increase:
+
+```{r}
+
+```
+
+And let's visualize it:
+
+```{r}
+
+```
+
+### Conduct a Paired T Test
+
+Now, the test is straightforward:
+
+```{r}
+
+```
+
+### Write a Conclusion
+
+**Conclusion**:
+
+### What if we use a wrong test?
+
+What happens when we use a two sample test instead?
+
+```{r}
+
+```

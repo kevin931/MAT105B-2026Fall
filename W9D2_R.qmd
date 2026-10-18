@@ -1,0 +1,89 @@
+---
+title: "W9D2"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+First, let's load the packages:
+
+```{r, message=FALSE}
+library(tidyverse)
+```
+
+# Two Independent Samples: IBM Example
+
+Now that we have done it on paper, let's do the same thing in R. In fact, we will perform more two-sample t test in R than on paper. First, let's enter the data:
+
+```{r}
+x1 <- c(34, 37, 37, 38, 41, 42, 43, 44, 44, 45,45,45, 46,
+        48, 49, 53, 53, 54, 54, 55, 56, 57, 60)
+x2 <- c(27, 33, 36, 37, 38, 38, 39, 42, 42, 43, 43, 44,
+        44, 44, 45, 45, 45, 45, 46, 46, 47, 47, 48, 48,
+        49, 49, 51, 51, 52, 54)
+```
+
+## Assumptions Checking
+
+Before we proceed, it's a good idea to check the assumptions and visualize the data so that we know what we are working with:
+
+```{r}
+
+```
+
+## Two Sample t Test
+
+Now, let's use the `t.test()` function to perform a two-sample t-test:
+
+```{r}
+
+```
+
+## Write a Conclusion
+
+**Conclusion**:
+
+\newpage
+
+# Example: Housing Data Analysis
+
+Now, let's turn our attention to real data! This is the Zillow dataset, which is available on Moodle.
+
+```{r}
+
+```
+
+Let's look at the data! What can we observe?
+
+## Comparison of Rents between Two States
+
+Assume that rent prices are random samples that are independent. (Is this true?) Let's filter the dataset to include two states of interest:
+
+```{r}
+
+```
+
+## Assumption Checking
+
+Now, let's check whether assumptions are met and whether it makes sense to run a two-sample t test:
+
+```{r}
+
+```
+
+Some questions:
+
+1.  Are the variances the same?
+2.  Is the normality condition met?
+
+## Run T Test
+
+```{r}
+
+```
+
+## Conclusion
+
+**Conclusion**:
