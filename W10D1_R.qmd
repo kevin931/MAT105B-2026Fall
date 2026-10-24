@@ -1,0 +1,21 @@
+---
+title: "W10D1 R"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Inference for Two Proportions
+
+As alluded to in class, we can construct CI and conduct hypothesis test for two proportions in R, which can be easier than to do by hand. In the case of two-proportion CI and tests, we can use the `prop.test` function from base R directly. Again, we don't want the continuity correction, so let's set it to `FALSE`.
+
+For now, let's keep using the sleep deprivation example as used in the notes, so that we can compare results.
+
+
+```{r}
+
+```
+
+

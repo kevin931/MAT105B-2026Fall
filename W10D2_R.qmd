@@ -1,0 +1,66 @@
+---
+title: "W10D2 R"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Chi-Squared Test
+
+We can perform a chi-squared test in R. But, first, we need to put the data into a table:
+
+```{r}
+
+```
+
+Now let's conduct the test:
+
+```{r}
+
+```
+
+But, this is not the most helpful. What if we want to know more information? We can save it into an object!
+
+```{r}
+
+```
+
+Then, we can, for example, check the expected counts:
+
+```{r}
+
+```
+
+And observed counts:
+
+```{r}
+
+```
+
+
+# What does a Chi-Squared distribution look like?
+
+In case you're curious, a chi-squared distribution looks like the following:
+
+
+```{r, fig.height=5}
+x <- seq(0, 20, 0.001)
+y <- dchisq(x, df = 1)
+plot(x, y, type = "l", main = "Chi-Squared Distributions", ylim = c(0, 0.5), lwd = 2)
+
+for (i in 2:8) {
+  y <- dchisq(x, df = i)
+  lines(x, y, type = "l", main = "Chi-Squared Distribution with df=1", col = i, lwd = 2)
+}
+
+legend(x = 15, y = 0.5, lwd = 2, col = 1:8, legend = paste("df = ", 1:8))
+
+```
+
+**Question**: What does the Chi-Squared distribution look like when df is large?
+
+
+
