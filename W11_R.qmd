@@ -1,0 +1,116 @@
+---
+title: "W11"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Dataset
+
+Before we begin, let's use load the dataset. This week, we will start with a new dataset:
+
+```{r}
+
+```
+
+And notice that this dataset has rows as counties. So, we can join the `county` dataset onto it:
+
+```{r}
+
+```
+
+It's worth stopping here and talking more about joining!
+
+# Comparison of Multiple Group Means
+
+Previously, we talked about comparison of means between 2 groups. For example, we can compare the share of population with medical debt in collections between metro vs non-metro counties:
+
+```{r}
+
+```
+
+Now, what happens when we have more than two groups? We can look at median education level.
+
+```{r}
+
+```
+
+**Question**: Does it look like the means are different across counties with different education levels?
+
+## What would you do?
+
+Using current knowledge, what would be your approach if you were to compare multiple groups?
+
+**Ideas**:
+
+# Analysis of Variance
+
+## Assumptions and Hypotheses
+
+We will write these on paper!
+
+## Intuition
+
+Suppose we have the following data:
+
+```{r}
+x1 <- rnorm(100, mean = 1)
+x2 <- rnorm(100, mean = 2)
+x3 <- rnorm(100, mean = 3)
+
+
+```
+
+What is the key assumption we make for hypothesis testing?
+
+**Assumption**:
+
+First, let's create a data frame:
+
+```{r}
+
+```
+
+So, under the assumption we can combine them.
+
+```{r}
+par(mfrow=c(1, 2))
+
+```
+
+**Question**: Which model explains the data better?
+
+## Let's do it!
+
+We can do this in R! To perform an ANOVA, we can run the following:
+
+```{r}
+
+```
+
+**Conclusion**:
+
+# Data Analysis
+
+To test whether the mean shares of medical debt collections are different across counties with different education levels, we will use ANOVA. However, notice that there are only 2 counties with below high school median education, let's group them with HS diploma:
+
+```{r}
+df <- df %>%
+  mutate(median_edu = if_else(median_edu %in% c("below_hs", "hs_disploma"),
+                              "below_college", median_edu))
+```
+
+And now, we can run ANOVA:
+
+```{r}
+
+```
+
+**Conclusion**:
+
+# So, now what?
+
+Notice that ANOVA only tells us whether at least one pair is different, but it doesn't tell us which pair is different. This is when we need post-hoc tests, a topic that is beyond the scope of this course. If you are taking DAT205, we will explore more there!
