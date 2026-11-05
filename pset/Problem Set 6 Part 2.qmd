@@ -1,0 +1,141 @@
+---
+title: "Problem Set 6 Part 2"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This part of the problem set involves the usage of R and the submission of R codes. Please fill in your R codes and answers in the indicated code chunks/areas. When finished, please knit the document to PDF and submit the PDF file to Moodle.
+
+In the case that your document does not knit to PDF, you may try the following:
+
+1.  Clear your local environment
+2.  Re-run all your cells in order and pay attention to whether you've defined variables after you called them.
+3.  Knit to html and print as PDF.
+
+**You will not receive credit if the markdown fails to compile to PDF. For example:**
+
+- **No PDF file is submitted**
+
+- **PDF of a raw markdown file is submitted**
+
+- **PDF of screenshots is submitted**
+
+**If you rendered with the global** `eval=False` **option, you will receive a 2-point deduction.**
+
+Before we begin, we will need to load the necessary packages:
+
+```{r, message=FALSE}
+library(DescTools)
+library(tidyverse)
+library(usdata)
+```
+
+\newpage
+
+# Housing Prices
+
+For this problem set, we will work with a new dataset, which looks at rent prices from Zillow by county. The dataset is available on Moodle in the "Datasets" folder's "Zillow" subfolder (Go to the General tab on the course page to find the dataset). The file name is `zillow_rent.csv`.
+
+(To read more about the dataset, you can go to this link: <https://www.zillow.com/research/data/>. This dataset was originally downloaded from the "RENTALS" section under the "Zillow Observed Rent Inex (ZORI)" if you are curious.)
+
+## Question 1
+
+First, we need to preprocess the data. Let's load the Zillow dataset and name it `housing`. At the same time, let's also load the `county` dataset from the `usdata` package and name it `metadata`.
+
+```{r}
+## Your code here
+
+```
+
+## Question 2
+
+Sometimes, it is useful to combine two datasets together. Namely, it is very useful to fetch information for each county from the `metadata` dataframe. In Tidyverse, there is a function called `left_join`, and a code template is like the following:
+
+```{R, eval=FALSE}
+# Do not run this code
+data1 <- data1 %>%
+  left_join(data2, by = c("col1", "col2"))
+```
+
+What `left_join` does is that it takes the first dataframe, and for each row, it combines information from the second dataframe using the columns specified in `by`. Now, you try it on our datasets. In this case, we want to start with the `housing` dataset and join `metadata` by the following variables: `name` and `state`. You may use the above template but change the necessary elements. Name the resulting dataset `housing` again.
+
+```{r}
+## Your code here
+
+```
+
+## Question 3
+
+To verify that the joining worked correctly, let's verify the number of columns of `housing` using the `ncol()` function:
+
+```{r}
+## Your code here
+
+```
+
+# Hypothesis Testing
+
+## Question 4
+
+Suppose we want to know whether the average price of rent in North Carolina is higher than the average in the country. First, let's find the population average across all counties and name it `mu`. Let's use the `2025-09-30` column which is the most recent. Note, for a column name that involves characters like `-`, you will need to use the following syntax retrieve a column (notice how we need backticks):
+
+```{r, eval=FALSE}
+## Do not put more code here
+housing$`2025-09-30`
+```
+
+```{r}
+## Your code here
+
+```
+
+## Question 5
+
+Now, filter the dataset to include all counties from NC and call the new dataset `housing_nc`:
+
+```{r}
+## Your code here
+
+```
+
+## Question 6
+
+Conduct the hypothesis test from Question 4 using data from `housing_nc`:
+
+```{r}
+## Your code here
+
+```
+
+## Question 7
+
+Based on the outputs from Question 6, write a conclusion about your hypothesis test:
+
+**Your answer**:
+
+## Question 8
+
+Now suppose you want to test whether rent has increased from `2025-01-31` to `2025-09-30`. Create a new variable called `rent_change` and compute difference between `2025-09-30` and `2025-01-31`. Keep using the `housing_nc` dataset:
+
+```{r}
+## Your code here
+
+```
+
+## Question 9
+
+Use the newly created `rent_change` column to conduct a hypothesis test on whether rent has increased this year. Be careful, think about whether this is one-sided or two-sided.
+
+```{r}
+## Your code here
+
+```
+
+## Question 10
+
+Based on your resulting in Question 9, write a conclusion for your hypothesis test.
+
+**Your answer**:
