@@ -1,0 +1,116 @@
+---
+title: "Problem Set 7 Part 2"
+format: typst
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This part of the problem set involves the usage of R and the submission of R codes. Please fill in your R codes and answers in the indicated code chunks/areas. When finished, please knit the document to PDF and submit the PDF file to Moodle.
+
+In the case that your document does not knit to PDF, this is the time to debug and ask me questions before the review. You may try the following:
+
+1.  Clear your local environment
+2.  Re-run all your cells in order and pay attention to whether you've defined variables after you called them.
+
+**You will not receive credit if the markdown fails to compile to PDF. For example:**
+
+- **No PDF file is submitted**
+
+- **PDF of a raw markdown file is submitted**
+
+- **PDF of screenshots is submitted**
+
+**If you rendered with the global** `eval=False` **option, you will receive a 2-point deduction.**
+
+Before we begin, we will need to load the necessary packages:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+(Note: Question 1-7 are worth 2 points each. Question 8 and 9 are worth 3 points each.)
+
+\newpage
+
+# Data Generation
+
+For this problem set, let's generate our data computationally. Before you begin, run the following codes to generate the data. Make sure you run all the codes together.
+
+```{r}
+set.seed(2025)
+df <- data.frame(x1 = rnorm(100),
+                 x2 = rnorm(100),
+                 x3 = rnorm(100, mean = 1.1))
+```
+
+## Question 1
+
+Use the `head()` function to print out the first few rows of the dataset.
+
+```{r}
+## Your code here
+
+```
+
+## Question 2
+
+What distributions do `x1`, `x2`, and `x3` follow? Be specific about the distributions' parameters.
+
+**Your answer**:
+
+## Question 3
+
+Based on your answer from Question 2, do you expect to reject the null when running an ANOVA? Make sure to mention what ANOVA is testing.
+
+**Your answer**:
+
+# ANOVA
+
+## Question 4:
+
+To run ANOVA, we need the data in long format with one column storing all the values and one column storing the grouping variables. It turns out that `tidyverse` has a function called `pivot_longer` that converts data from wide format to long format. Use this function to convert the format and store your new dataset as `df2`.
+
+(Note: Your can use `help(pivot_longer)` to read the documentation. You will need to specify which columns you need, and we need all 3. You can do so by specifying teh column indices as `1:3` or via names as `c("x1", "x2", "x3")`).
+
+```{r}
+## Your code here
+
+```
+
+## Question 5
+
+Now, use the new `df2` to run an ANOVA and print out a summary of the results.
+
+```{r}
+## Your code here
+
+```
+
+## Question 6
+
+Write a conclusion for the ANOVA.
+
+**Your answer**:
+
+## Question 7
+
+Based on your answers in Question 2, 3, and 6, is your conclusion correct? If not, specify the type of error you made.
+
+**Your answer**:
+
+## Question 8
+
+Since ANOVA doesn't tell us which pair is different, run all 3 $t$ tests to detect which exact pair(s) have different means. You can use `df` or `df2` for this task, whichever is easier. It is okay to assume unequal variance for $t$ tests.
+
+```{r}
+## Your code here
+
+```
+
+## Question 9
+
+Based on your answer in Question 8, which pairs are different? Does your results make sense given our data-generating mechanism?
+
+**Your answer**:

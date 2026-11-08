@@ -1,0 +1,184 @@
+---
+title: "W12D1"
+format: typst
+---
+
+First, let's load some packages:
+
+```{r}
+library(tidyverse)
+```
+
+# Dataset
+
+For this unit on regression and correlation, we will look at credit health on the county level during the pandemic. In other words, we want to look at whether people are in debt and how good their credits are.
+
+First, let's load the dataset.
+
+```{r}
+
+```
+
+Now, let's have a glimpse of the dataset:
+
+```{r}
+
+```
+
+How do we know what some of these variables mean?
+
+## Scatterplots Revisited
+
+Remember back in the days of September, we talked about data visualization. In fact, a useful thing to visualize is to look at the relationships between all variables.
+
+```{r}
+
+```
+
+At a glance, this is not the most useful thing, unless we zoom in quite a bit.
+
+**Question**: Do we expect there to be relationships between variables?
+
+### Positive Relationship
+
+Let's look at a pair of variables with positive relationship between `share_debt_collections` and `share_subprime`:
+
+```{r}
+
+```
+
+How would you describe this relationship?
+
+If we were to draw a line, what would this look like?
+
+```{r}
+
+```
+
+## Negative Relationship
+
+Let's look a negative relationship between `median_credoit_score` and `avg_credit_util`:
+
+```{r}
+
+```
+
+## Not Much a Relationship
+
+Let's look a weak to no relationship between between `median_debt_collections` and `share_medical_collections`:
+
+```{r}
+
+```
+
+# Correlations
+
+Is there is way to quantify how strongly two variables are related? Yes, we can compute the **correlation coefficient**. The population correlation is defined as
+
+$$
+\rho = \frac{E((X-\mu_X)(Y-\mu_Y))}{\sigma_X\sigma_Y}
+$$
+
+And you can estimate this using sample statistics:
+
+$$
+r = \frac{\frac{1}{n-1}\sum_i (x_i-\bar x)(y_i-\bar y)}{s_x s_y}
+$$
+
+Do we want to do this by hand? Not really.
+
+## Properties of Correlation
+
+1.  It's between -1 and 1: $-1\leq r\leq 1$
+2.  It works with only linear relationship
+3.  0 indicates no linear relationship
+
+## Correlation Coefficientsrom Previous Examples
+
+### Positive Correlation
+
+Between `share_debt_collections` and `share_subprime`:
+
+```{r}
+
+```
+
+### Negative Correlation
+
+Between `median_credit_score` and `avg_credit_util`:
+
+```{r}
+
+```
+
+### Weak Correlation
+
+Between `median_debt_collections` and `share_medical_collections`:
+
+```{r}
+
+```
+
+## Correlation Test
+
+How do we know whether a correlation is significantly different from 0? We perform a hypothesis test!
+
+**Null**: $\rho=0$
+
+**Alternative**: $\rho\neq 0$
+
+Using `share_debt_collections` and `share_subprime` as examples:
+
+```{r}
+
+```
+
+**Conclusion:** There is sufficient evidence to suggest that the correlation between share of populations with debt in collections and share of population with subprime credit score is different from 0.
+
+# Nonlinear Relationships
+
+Remember, correlation coefficient (Pearson's ) works only for linear relationship, and later in the week, we will cover linear regression. When the relationship is nonlinear, we cannot use the same procedure.
+
+For example, let's generate some nonlinear data.
+
+```{r}
+x <- seq(-1, 1, 0.01)
+y <- -x^2 + rnorm(length(x), sd = 0.1)
+data <- data.frame(x = x, y = y)
+```
+
+First, let's plot it:
+
+```{r}
+
+```
+
+As we can see, the line **does not** fit the data at all!
+
+Now, let's compute the correlation coefficient:
+
+```{r}
+
+```
+
+# Wing Span Experiment
+
+Now, find a player who plays or has played in the NBA and write down the player's height and wingspan on the Google Sheet. All measurements should be in meters.
+
+We will then analyze the dataset live in class. First, let's load the dataset:
+
+```{r}
+
+```
+
+Then, let's visualize the relationship with a line:
+
+```{r}
+
+```
+
+Finally, can we fit a line to the data? What is the equation?
+
+```{r}
+
+```
